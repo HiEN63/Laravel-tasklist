@@ -46,8 +46,8 @@
                     <table class="table table-striped task-table">
                         <thead>
                             <th>Task</th>
-                            <th>&nbsp;</th>
                             <th>User</th>
+                            <th>&nbsp;</th>
                         </thead>
                         <tbody>
                             @foreach($tasks as $task)
@@ -57,6 +57,10 @@
                                         <div>{{ $task->taskname }}</div>
                                     </td>
 
+                                    <!-- User Name -->
+                                    <td class="table-text">
+                                        <div>{{ $task->username }}</div>
+                                    </td>
                                     <!-- Delete Button -->
                                     <td>
                                         <form action="{{ url('task/'.$task->id) }}" method="POST">
@@ -68,6 +72,7 @@
                                             </button>
                                         </form>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
