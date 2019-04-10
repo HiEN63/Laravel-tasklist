@@ -1,8 +1,10 @@
 <?php
-use App\Task;
+use App\tasklist;
 use Illuminate\Http\Request;
 
-/*
+// use Illuminate\Support\Facades\DB;
+
+/*'
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -18,9 +20,12 @@ use Illuminate\Http\Request;
 });*/
 
 Route::get('/', function () {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
+    $tasks = DB::select('select task_id,task_sentence,time_limit,time_stamp,user_id,task_status from tasks');
 
+    //testcode
+    logger($tasks);
     return view('tasks', [
+
         'tasks' => $tasks
     ]);
 });
@@ -35,7 +40,7 @@ Route::post('/task', function (Request $request) {
             ->withErrors($validator);
     }
 
-    $task = new Task;
+    $task = new tasklist;
     $task->taskname = $request->taskname;
     $task->username = 'hoge';
     $task->save();

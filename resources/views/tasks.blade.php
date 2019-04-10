@@ -17,10 +17,10 @@
 
                     <!-- Task Name  -->
                     <div class="form-group">
-                    <label for="task-name" class="col-sm-3 control-label">Task</label>
-                    <div class="col-sm-6">
-                        <input type="text" name="taskname" id="task-name" class="form-control">
-                    </div>
+                        <label for="task-name" class="col-sm-3 control-label">Task</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="taskname" id="task-name" class="form-control">
+                            </div>
                     </div>
 
                     <!-- Add Task Button -->
@@ -34,7 +34,8 @@
                 </form>
             </div>
         </div>
-
+        @if (true)
+        @endif
         <!-- Current Tasks -->
         @if (count($tasks) > 0)
             <div class="panel panel-default">
@@ -47,6 +48,9 @@
                         <thead>
                             <th>Task</th>
                             <th>User</th>
+                            <th>TimeLimit</th>
+                            <th>TImeStanp</th>
+                            <th>Status</th>
                             <th>&nbsp;</th>
                         </thead>
                         <tbody>
@@ -54,16 +58,42 @@
                                 <tr>
                                     <!-- Task Name -->
                                     <td class="table-text">
-                                        <div>{{ $task->taskname }}</div>
+                                        <div>{{ $task->task_sentence }}</div>
                                     </td>
 
+                                    <!-- TODO user idから名前を検索する -->
                                     <!-- User Name -->
-                                    <td class="table-text">
+                                    {{-- <td class="table-text">
                                         <div>{{ $task->username }}</div>
+                                    </td> --}}
+                                    <td class="spacer"></td>
+
+                                    <!--TODO TimeLimit -->
+                                    <td class="table-text">
+                                        <div>{{ $task->time_limit }}</div>
+                                    </td>
+
+                                    <!--TODO TimeStanp-->
+                                    <td class="taable-text">
+                                        <div> {{ $task->time_stamp }}</div>
+                                    </td>
+
+                                    <td class="table-text">
+                                        <div>
+                                            @php
+                                            $task_status = $task ->task_status
+                                            @endphp
+
+                                            @if($task_status == 0)
+                                                未完了
+                                            @else
+                                                完了
+                                            @endif
+                                        </div>
                                     </td>
                                     <!-- Delete Button -->
                                     <td>
-                                        <form action="{{ url('task/'.$task->id) }}" method="POST">
+                                        <form action="{{ url('task/'.$task->task_id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
