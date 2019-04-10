@@ -22,6 +22,14 @@
                                 <input type="text" name="task_sentence" id="task-name" class="form-control">
                             </div>
                     </div>
+                    <br>
+                    <!-- Task Time Limit -->
+                    <div class="form-group">
+                        <label for="time-limit" class="col-sm-3 control-label">TimeLimit</label>
+                            <div class="col-sm-6">
+                                <input type="date" name="time_limit" id="time_limit" class="form-control">
+                            </div>
+                    </div>
 
                     <!-- Add Task Button -->
                     <div class="form-group">
