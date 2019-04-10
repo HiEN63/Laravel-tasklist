@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tasklist extends Model
 {
-//    protected $table = 'tasklist';
+    protected $tasks = 'tasks';
+    protected $users = 'users';
 }

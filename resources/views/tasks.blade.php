@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label for="task-name" class="col-sm-3 control-label">Task</label>
                             <div class="col-sm-6">
-                                <input type="text" name="taskname" id="task-name" class="form-control">
+                                <input type="text" name="task_sentence" id="task-name" class="form-control">
                             </div>
                     </div>
 
@@ -75,7 +75,7 @@
 
                                     <!--TODO TimeStanp-->
                                     <td class="taable-text">
-                                        <div> {{ $task->time_stamp }}</div>
+                                        <div> {{ $task->created_at }}</div>
                                     </td>
 
                                     <td class="table-text">

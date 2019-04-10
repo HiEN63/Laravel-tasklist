@@ -1,5 +1,5 @@
 <?php
-use App\tasklist;
+use App\task;
 use Illuminate\Http\Request;
 
 // use Illuminate\Support\Facades\DB;
@@ -20,10 +20,10 @@ use Illuminate\Http\Request;
 });*/
 
 Route::get('/', function () {
-    $tasks = DB::select('select task_id,task_sentence,time_limit,time_stamp,user_id,task_status from tasks');
+    $tasks = DB::select('select task_id,task_sentence,time_limit,created_at,user_id,task_status from tasks');
 
     //testcode
-    logger($tasks);
+    //logger($tasks);
     return view('tasks', [
 
         'tasks' => $tasks
@@ -31,7 +31,7 @@ Route::get('/', function () {
 });
 Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
-        'taskname' => 'required|max:255',
+        'task_sentence' => 'required|max:255',
     ]);
 
     if($validator->fails()){
@@ -40,9 +40,12 @@ Route::post('/task', function (Request $request) {
             ->withErrors($validator);
     }
 
-    $task = new tasklist;
-    $task->taskname = $request->taskname;
-    $task->username = 'hoge';
+    $task = new task;
+    $task->task_sentence = $request->task_sentence;
+    $task->time_limit = $request->time_limit;
+    //todo This get by login infomation
+    $task->user_id = 4;
+    $task->task_status = 0;
     $task->save();
 
     return redirect('/');
