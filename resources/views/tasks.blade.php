@@ -54,8 +54,9 @@
                 <div class="panel-body">
                     <table class="table table-striped task-table">
                         <thead>
-                            <th>Task</th>
+                            <th>TaskTitle</th>
                             <th>User</th>
+                            <th>DayLimit</th>
                             <th>TimeLimit</th>
                             <th>TImeStanp</th>
                             <th>Status</th>
@@ -74,11 +75,18 @@
                                     {{-- <td class="table-text">
                                         <div>{{ $task->username }}</div>
                                     </td> --}}
-                                    <td class="spacer"></td>
-
-                                    <!--TODO TimeLimit -->
                                     <td class="table-text">
-                                        <div>{{ $task->time_limit }}</div>
+                                            @foreach($users as $user)
+                                                @if($user->id === $task->user_id)
+                                                <div>{{ $user->user_name }}</div>
+                                                    @break
+                                                @endif
+                                            @endforeach
+                                    </td>
+
+                                    <!-- DayLimit -->
+                                    <td class="table-text">
+                                        <div>{{ $task->TimeLimit }}</div>
                                     </td>
 
                                     <!--TODO TimeStanp-->
@@ -89,7 +97,7 @@
                                     <td class="table-text">
                                         <div>
                                             @php
-                                            $task_status = $task ->task_status
+                                                $task_status = $task ->task_status
                                             @endphp
 
                                             @if($task_status == 0)

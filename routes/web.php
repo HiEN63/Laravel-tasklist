@@ -1,5 +1,6 @@
 <?php
-use App\task;
+use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 
 // use Illuminate\Support\Facades\DB;
@@ -15,20 +16,9 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-Route::get('/', function () {
-    $tasks = DB::select('select task_id,task_sentence,time_limit,created_at,user_id,task_status from tasks');
-
-    //testcode
-    //logger($tasks);
-    return view('tasks', [
-
-        'tasks' => $tasks
-    ]);
-});
+Route::get('/' , 'TaskController@getTask');
+Route::post('/task', 'TaskController@postTask');
+/*
 Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'task_sentence' => 'required|max:255',
@@ -50,13 +40,17 @@ Route::post('/task', function (Request $request) {
 
     return redirect('/');
 });
+*/
+Route::delete('/task/{task}', 'TaskController@deleteTask');
+/*
 Route::delete('/task/{task}', function (Task $task) {
     $task->delete();
-
     return redirect('/');
 });
-
+*/
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/hoge', 'HogeController@hoge');
