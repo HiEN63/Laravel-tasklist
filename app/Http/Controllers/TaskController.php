@@ -34,6 +34,7 @@ class TaskController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+        dd($request);
         $task = new task;
         $task->task_id = $request->id;
         $task->task_sentence = $request->task_sentence;
