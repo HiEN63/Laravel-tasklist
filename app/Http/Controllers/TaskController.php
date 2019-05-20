@@ -25,6 +25,7 @@ class TaskController extends Controller
             ]);
     }
 
+
     public function postTask(Request $request){
         $validator = \Validator::make($request->all(), [
             'task_sentence' => 'required|max:255',
